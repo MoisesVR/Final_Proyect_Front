@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+
 import Home from "./views/Home";
 import Plans from "./views/Plans";
 import Services from "./views/Services";
