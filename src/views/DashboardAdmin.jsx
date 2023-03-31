@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { Card, Nav, Table, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import UserContext from "../context/context";
 
@@ -79,15 +79,15 @@ const DashboardAdmin = () => {
         }
     }
 
-        function setterURL(){
-            if(window.location.hash === "#Usuarios"){
-                setUrl("#Usuarios");
-            }else if (window.location.hash === "#Planes"){
-                setUrl("#Planes");
-            }else if (window.location.hash === "#Clases"){
-                setUrl("#Clases");
-            }
+    function setterURL() {
+        if (window.location.hash === "#Usuarios") {
+            setUrl("#Usuarios");
+        } else if (window.location.hash === "#Planes") {
+            setUrl("#Planes");
+        } else if (window.location.hash === "#Clases") {
+            setUrl("#Clases");
         }
+    }
 
     useEffect(() => {
         setterURL();
@@ -129,7 +129,9 @@ const DashboardAdmin = () => {
                             <Card.Header>
                                 <Nav variant="tabs" defaultActiveKey="/dashboard#Usuarios">
                                     <Nav.Item>
-                                        <Nav.Link href="/dashboard#Usuarios">Usuarios</Nav.Link>
+                                        <Nav.Link>
+                                            <Link>Usuarios</Link>
+                                        </Nav.Link>
                                     </Nav.Item>
                                 </Nav>
                             </Card.Header>
@@ -172,7 +174,9 @@ const DashboardAdmin = () => {
                             <Card.Header>
                                 <Nav variant="tabs" defaultActiveKey="/dashboard#Planes">
                                     <Nav.Item>
-                                        <Nav.Link href="/dashboard#Planes">Planes</Nav.Link>
+                                        <Nav.Link>
+                                            <Link to="/dashboard#Planes">Planes</Link>
+                                        </Nav.Link>
                                     </Nav.Item>
                                 </Nav>
                             </Card.Header>
@@ -210,7 +214,9 @@ const DashboardAdmin = () => {
                             <Card.Header>
                                 <Nav variant="tabs" defaultActiveKey="/dashboard#Clases">
                                     <Nav.Item>
-                                        <Nav.Link href="/dashboard#Clases">Clases</Nav.Link>
+                                        <Nav.Link>
+                                            <Link to="/dashboard#Clases">Clases</Link>
+                                        </Nav.Link>
                                     </Nav.Item>
                                 </Nav>
                             </Card.Header>
@@ -245,13 +251,19 @@ const DashboardAdmin = () => {
 
             <Nav variant="tabs" defaultActiveKey={window.location.pathname + window.location.hash} className="flex-column" style={{ height: "10%" }}>
                 <Nav.Item>
-                    <Nav.Link href={`/dashboard#Usuarios`} onClick={setterUrlUsuarios} >Usuarios</Nav.Link>
+                    <Nav.Link onClick={setterUrlUsuarios} >
+                        <Link to="/dashboard#Usuarios">Usuarios</Link>
+                    </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href={`/dashboard#Planes`} onClick={setterUrlPlanes} >Planes</Nav.Link>
+                    <Nav.Link onClick={setterUrlPlanes} >
+                        <Link to="/dashboard#Planes">Planes</Link>
+                    </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href={`/dashboard#Clases`} onClick={setterUrlClases} >Clases</Nav.Link>
+                    <Nav.Link onClick={setterUrlClases} >
+                        <Link to="/dashboard#Clases">Clases</Link>
+                    </Nav.Link>
                 </Nav.Item>
             </Nav>
         </div >

@@ -27,7 +27,7 @@ const Plans = () => {
             <div>
                 <h1 className="text-center"> Nuestros Planes </h1>
             </div>
-            {plans  ?
+            {plans ?
                 <div>
                     {plans.map((plan, i) => {
                         if (plan.cost === 0) {
@@ -41,7 +41,9 @@ const Plans = () => {
                                             <Card.Title>{plan.duration}</Card.Title>
                                             <Card.Text>{plan.description}</Card.Text>
                                             <Card.Text>${plan.cost}</Card.Text>
-                                            <Button variant="primary" href={`/registrar`} >Contratar</Button>
+                                            <Button variant="primary" >
+                                                <Link to="/registrar"></Link>Contratar
+                                            </Button>
                                         </Card.Body>
                                     </Card>
                                 </div>

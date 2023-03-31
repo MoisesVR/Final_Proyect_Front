@@ -165,8 +165,12 @@ const DashboardUser = () => {
                     <Card.Header>
                         <Nav variant="tabs" defaultActiveKey="/dashboard_user#MiPerfil#Ingresos">
                             <Nav.Item style={{ display: "flex" }}>
-                                <Nav.Link href={`/dashboard_user#MiPerfil#Ingresos`} onClick={setterUrlMiPerfil} >Ingresos</Nav.Link>
-                                <Nav.Link href={`/dashboard_user#MiPerfil#Clases`} onClick={setterUrlMiPerfilClases} >Clases</Nav.Link>
+                                <Nav.Link onClick={setterUrlMiPerfil} >
+                                    <Link to="/dashboard_user#MiPerfil#Ingresos">Ingresos</Link>
+                                </Nav.Link>
+                                <Nav.Link onClick={setterUrlMiPerfilClases} >
+                                    <Link to="/dashboard_user#MiPerfil#Clases">Clases</Link>
+                                </Nav.Link>
                             </Nav.Item>
                         </Nav>
                     </Card.Header>
@@ -200,8 +204,12 @@ const DashboardUser = () => {
                     <Card.Header>
                         <Nav variant="tabs" defaultActiveKey="/dashboard_user#MiPerfil#Clases">
                             <Nav.Item style={{ display: "flex" }}>
-                                <Nav.Link href={`/dashboard_user#MiPerfil#Ingresos`} defaultActiveKey="/dashboard_user#MiPerfil#Ingresos" onClick={setterUrlMiPerfil} >Ingresos</Nav.Link>
-                                <Nav.Link href={`/dashboard_user#MiPerfil#Clases`} defaultActiveKey="/dashboard_user#MiPerfil#Clases" onClick={setterUrlMiPerfilClases} >Clases</Nav.Link>
+                                <Nav.Link defaultActiveKey="/dashboard_user#MiPerfil#Ingresos" onClick={setterUrlMiPerfil} >
+                                    <Link to="dashboard_user#MiPerfil#Ingresos">Ingresos</Link>
+                                </Nav.Link>
+                                <Nav.Link defaultActiveKey="/dashboard_user#MiPerfil#Clases" onClick={setterUrlMiPerfilClases} >
+                                    <Link to="/dashboard_user#MiPerfil#Clases">Clases</Link>
+                                </Nav.Link>
                             </Nav.Item>
                         </Nav>
                     </Card.Header>
@@ -367,13 +375,18 @@ const DashboardUser = () => {
                 </div> : null}
             <Nav variant="tabs" defaultActiveKey={window.location.pathname + window.location.hash} className="flex-column" style={{ height: "10%" }}>
                 <Nav.Item>
-                    <Nav.Link href={`/dashboard_user#MiPerfil#Ingresos`} defaultActiveKey={window.location.pathname + window.location.hash} onClick={setterUrlMiPerfil} >Usuarios</Nav.Link>
+                    <Nav.Link defaultActiveKey={window.location.pathname + window.location.hash} onClick={setterUrlMiPerfil} >
+                        <Link to="/dashboard_user#MiPerfil#Ingresos">Usuarios</Link>Usuarios</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href={`/dashboard_user#Reservas `} defaultActiveKey={window.location.pathname + window.location.hash} onClick={setterUrlReservas} >Reservas</Nav.Link>
+                    <Nav.Link defaultActiveKey={window.location.pathname + window.location.hash} onClick={setterUrlReservas} >
+                        <Link to="/dashboard_user#Reservas">Reservas</Link>
+                    </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href={`/dashboard_user#Clases`} defaultActiveKey={window.location.pathname + window.location.hash} onClick={setterUrlClases} >Clases</Nav.Link>
+                    <Nav.Link defaultActiveKey={window.location.pathname + window.location.hash} onClick={setterUrlClases} >
+                        <Link to="/dashboard_user#Clases">Clases</Link>
+                    </Nav.Link>
                 </Nav.Item>
             </Nav>
         </div>
