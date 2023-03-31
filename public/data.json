@@ -1,0 +1,80 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "nombre": "Moises",
+            "correo": "moises@gmail.com",
+            "direccion": "Avenida Siempre Viva",
+            "forma_de_pago": "Efectivo",
+            "tipo_de_usuario": "Admin",
+            "contraseña": "asdfg"
+        },
+        {
+            "id": 2,
+            "nombre": "Mateo",
+            "correo": "mateo@gmail.com",
+            "direccion": "Avenida Siempre Viva",
+            "forma_de_pago": "Efectivo",
+            "tipo_de_usuario": "Usuario",
+            "contraseña": "gfasd"
+        },
+        {
+            "id": 3,
+            "nombre": "Jona",
+            "correo": "jona@gmail.com",
+            "direccion": "Avenida Simpre Viva",
+            "forma_de_pago": "Efectivo",
+            "tipo_de_usuario": "Profesor",
+            "contraseña": "fghjk"
+        }
+    ],
+    "class": [
+        {
+            "id": 1,
+            "nombre": "Combat",
+            "img": "https://guiafitness.com/wp-content/uploads/body-combat-1200x675.jpg",
+            "alt": "",
+            "descripcion": "Uno de los mejores entrenamientos aeróbicos con el cual lograrás elevar tus pulsaciones mientras realizas una perfecta coreografía de movimientos de artes marciales, mejorando tu flexibilidad, fuerza, coordinación y resistencia cardiovascular.",
+            "cupo": 30
+        },
+        {
+            "id": 2,
+            "nombre": "Fit Grit",
+            "img": "https://www.dinamity.cl/wp-content/uploads/2021/05/fitgrit.png",
+            "alt": "",
+            "descripcion": "Experimenta esta serie de ejercicios de alta intensidad, durante 30 minutos te brindaremos increíbles resultados de acondicionamiento físico, a través de un diseño único de entrenamiento y en el cual podrás trabajar tu cuerpo de distintas formas, usando implementos o tu propio peso corporal.",
+            "cupo": 15
+        },
+        {
+            "id": 3,
+            "nombre": "Athletic",
+            "img": "https://www.feda.net/wp-content/uploads/2018/08/circuit-training.jpeg",
+            "alt": "",
+            "descripcion": "Modalidad de entrenamiento en circuito, basado en el principio fisiológico de la sobrecarga muscular, que consiste en llevarte a realizar ejercicios de manera continua, aprovechando al máximo tu tiempo de entrenamiento y estimulando tus músculos de manera alternada.",
+            "cupo": 20
+        }
+    ],
+    "plans": [
+        {
+            "id": 1,
+            "nombre": "Anual",
+            "duracion": "12 Meses" ,
+            "descripcion": "Membresía con duración de 12 meses con posibilidad de congelación, acceso sin limites todos los dias de vigencia de tu plan, acceso ilimitado a todas las clases dirigidas durante la vigencia del plan, evaluacion antropometrica con sistema inbody de ultima generacion, programa de entrenamiento enfocado a tus objetivos",
+            "costo": 120000 
+        },
+        {
+            "id": 2,
+            "nombre": "Trimestral",
+            "duracion": "3 meses",
+            "descripcion": "Membresía con duración de 3 meses con posibilidad de congelación, acceso sin limites todos los dias de vigencia de tu plan, acceso ilimitado a todas las clases dirigidas durante la vigencia del plan, evaluacion antropometrica con sistema inbody de ultima generacion, programa de entrenamiento enfocado a tus objetivos",
+            "costo": 35000
+        },
+        {
+            "id": 3,
+            "nombre": "Semestral",
+            "duracion": "6 meses",
+            "descripcion": "Membresía con duración de 6 meses con posibilidad de congelación, acceso sin limites todos los dias de vigencia de tu plan, acceso ilimitado a todas las clases dirigidas durante la vigencia del plan, evaluacion antropometrica con sistema inbody de ultima generacion, programa de entrenamiento enfocado a tus objetivos",
+            "costo": 70000
+        }
+    ]
+}
