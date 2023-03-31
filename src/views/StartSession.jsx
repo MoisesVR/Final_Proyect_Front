@@ -21,7 +21,7 @@ function StartSession() {
     };
 
     const login = async () => {
-        const urlServer = "http://localhost:3000";
+        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
         const endpoint = "/iniciarSesion";
         const { email, password } = usuario;
         try {

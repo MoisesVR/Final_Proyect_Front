@@ -22,7 +22,7 @@ const DashboardUser = () => {
     }
 
     const getUser = async () => {
-        const urlServer = "http://localhost:3000";
+        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app/";
         const endpoint = "/dashboard_user/usuarios";
         const email = localStorage.getItem("usuario");
         const token = localStorage.getItem("token");
@@ -41,7 +41,7 @@ const DashboardUser = () => {
 
     const getEntry = async () => {
         if (actualUser.length !== 0) {
-            const urlServer = "http://localhost:3000";
+            const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
             const endpoint = "/dashboard_user/ingresos";
             const id = actualUser;
             const token = localStorage.getItem("token");
@@ -60,7 +60,7 @@ const DashboardUser = () => {
 
     const getClases = async () => {
         if (actualUser.length !== 0) {
-            const urlServer = "http://localhost:3000";
+            const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app/";
             const token = localStorage.getItem("token");
             const id = actualUser;
             const endpoint = `/dashboard_user/clases/${id}`;
@@ -76,7 +76,7 @@ const DashboardUser = () => {
     }
 
     const getAllClases = async () => {
-        const urlServer = "http://localhost:3000";
+        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app/";
         const token = localStorage.getItem("token");
         const endpoint = "/dashboard_user/clases"
 
@@ -91,7 +91,7 @@ const DashboardUser = () => {
     }
 
     const deleteReserva = async (id) => {
-        const urlServer = "http://localhost:3000";
+        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
         const endpoint = `/dashboard_user/ingresos/${id}`;
         const token = localStorage.getItem("token");
         try {
@@ -104,7 +104,7 @@ const DashboardUser = () => {
     }
 
     const deleteReservaClase = async (id) => {
-        const urlServer = "http://localhost:3000";
+        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
         const endpoint = `/dashboard_user/clases/${id}`;
         const token = localStorage.getItem("token");
 

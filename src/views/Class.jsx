@@ -8,7 +8,7 @@ const Class = () => {
     const [clases, setClases] = useState([]);
 
     const getClases = async () => {
-        const urlServer = "http://localhost:3000";
+        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
         const endpoint = "/clases";
         try {
             const response = await axios.get(urlServer + endpoint);

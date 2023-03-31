@@ -21,7 +21,7 @@ const DashboardAdmin = () => {
     }
 
     const getUsuarioData = async () => {
-        const urlServer = "http://localhost:3000";
+        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
         const endpoint = "/dashboard/usuarios";
         const token = localStorage.getItem("token");
 
@@ -37,7 +37,7 @@ const DashboardAdmin = () => {
     };
 
     const deleteUsuario = async (id) => {
-        const urlServer = "http://localhost:3000";
+        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app/";
         const endpoint = `/dashboard/usuarios/${id}`;
         const token = localStorage.getItem("token");
         try {
@@ -50,7 +50,7 @@ const DashboardAdmin = () => {
     }
 
     const getPlanesData = async () => {
-        const urlServer = "http://localhost:3000";
+        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
         const endpoint = "/dashboard/planes";
         const token = localStorage.getItem("token");
 
@@ -65,7 +65,7 @@ const DashboardAdmin = () => {
     }
 
     const getClasesData = async () => {
-        const urlServer = "http://localhost:3000";
+        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app/";
         const endpoint = "/dashboard/clases";
         const token = localStorage.getItem("token");
 

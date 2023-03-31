@@ -8,7 +8,7 @@ const Plans = () => {
     const [plans, setPlans] = useState([]);
 
     const getPlans = async () => {
-        const urlServer = "http://localhost:3000";
+        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
         const endpoint = "/planes";
         try {
             const response = await axios.get(urlServer + endpoint);

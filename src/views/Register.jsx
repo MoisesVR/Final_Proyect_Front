@@ -18,7 +18,7 @@ function Register() {
     };
 
     const register = async () => {
-        const urlServer = "http://localhost:3000";
+        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
         const endpoint = "/registrar";
         let { nombre, email, password, direccion, forma_de_pago, id_user_type, id_plan } = usuario;
         try {
