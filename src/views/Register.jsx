@@ -7,7 +7,7 @@ import axios from "axios";
 
 function Register() {
 
-    const [usuario, setUserLocal] = useState({ id_user_type: 1 });
+    const [usuario, setUserLocal] = useState({ id_user_type: 2 });
 
     const navigate = useNavigate();
 
