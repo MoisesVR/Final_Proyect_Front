@@ -36,9 +36,11 @@ function CollapsibleNavbar() {
                     {!localStorage.getItem("token") ?
                         <div>
                             <Nav>
-                                <Nav.Link to={`/registrar`}>Registrar</Nav.Link>
+                                <Nav.Link to={`/registrar`}>
+                                    <Link to="/registrar">Registrar</Link>
+                                </Nav.Link>
                                 <Nav.Link eventKey={2} to={`/iniciarSesion`}>
-                                    Iniciar Sesión
+                                    <Link to="/iniciarSesion">Iniciar Sesion</Link>
                                 </Nav.Link>
                             </Nav>
                         </div> :
