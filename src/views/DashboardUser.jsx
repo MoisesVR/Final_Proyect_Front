@@ -13,7 +13,7 @@ const DashboardUser = () => {
     const [radioValue, setRadioValue] = useState();
     const [radioValue2, setRadioValue2] = useState();
 
-    const [clas, setClas] = useState();
+    const [clas, setClass] = useState();
 
     const radios = [
         { name: '10:00', value: '10:00' },
@@ -187,6 +187,7 @@ const DashboardUser = () => {
         if (url === "#MiPerfil#Ingresos") {
             getUser();
             getEntry();
+            getAllClases();
         } else if (url === "#MiPerfil#Clases") {
             getClases();
         } else if (url === "#Reservas") {
@@ -222,10 +223,10 @@ const DashboardUser = () => {
                     <Card.Header>
                         <Nav variant="tabs" defaultActiveKey="/dashboard_user#MiPerfil#Ingresos">
                             <Nav.Item style={{ display: "flex" }}>
-                                <Nav.Link onClick={setterUrlMiPerfil} >
+                                <Nav.Link defaultActiveKey="/dashboard_user#MiPerfil#Ingresos" onClick={setterUrlMiPerfil} >
                                     <Link to="/dashboard_user#MiPerfil#Ingresos">Ingresos</Link>
                                 </Nav.Link>
-                                <Nav.Link onClick={setterUrlMiPerfilClases} >
+                                <Nav.Link defaultActiveKey="/dashboard_user#MiPerfil#Clases" onClick={setterUrlMiPerfilClases} >
                                     <Link to="/dashboard_user#MiPerfil#Clases">Clases</Link>
                                 </Nav.Link>
                             </Nav.Item>
@@ -328,60 +329,69 @@ const DashboardUser = () => {
                     </div> : null}
 
                 </div>
-            </div> : url === "#Clases" ?
-                <div style={{ width: "60vw" }}>
-                    <div>
-                        <h1> Clases </h1>
-                        <div style={{ display: "flex" }}>
-                            {clases.map((clase, i) => {
-                                return (
-                                    <Card key={i} style={{ width: '18rem' }}>
-                                        <Button onClick={setClas(clase.id)}>{clase.name}</Button>
-                                        <Card.Img variant="top" src={clase.img} />
-                                    </Card>)
-                            })}
-                        </div>
-                        <div>
-                            <Calendar name="calendar" onChange={onChange2} value={value}></Calendar>
-                            <br />
-                            {value2 !== undefined ? <div>
-                                <ButtonGroup>
-                                    {radios.map((radio, idx) => (
-                                        <ToggleButton
-                                            key={idx}
-                                            id={`radio-${idx}`}
-                                            type="radio"
-                                            variant={idx % 2 ? 'outline-success' : 'outline-success'}
-                                            name="radio"
-                                            value={radio.value}
-                                            checked={radioValue2 === radio.value}
-                                            onChange={(e) => setRadioValue2(e.currentTarget.value)}>
-                                            {radio.name}
-                                        </ToggleButton>
-                                    ))}
-                                </ButtonGroup>
-                                <div style={{ paddingTop: "5%" }}>
-                                    <Button onClick={(e) => addReserveClass(value2, radioValue2, clas)}> Reservar Hora</Button>
-                                </div>
-                            </div> : null}
-                        </div>
+            </div> : url === "#Clases" ? <div>
+                <div>
+                    <h1 style={{ width: "60vw" }}>Reserva tu clase preferida</h1>
+                </div>
+                <div>
+                    <h1> Clases </h1>
+                    <div style={{ display: "flex" }}>
+                        {clases.map((clase, i) => {
+                            return (
+                                <Card key={i} style={{ width: '18rem' }}>
+                                    <Button onClick={(e) => setClass(clase.id)}>{clase.name}</Button>
+                                    <Card.Img variant="top" src={clase.img} />
+                                </Card>)
+                        })}
                     </div>
-                    <Nav variant="tabs" defaultActiveKey={window.location.pathname + window.location.hash} className="flex-column" style={{ height: "10%" }}>
-                        <Nav.Item>
-                            <Nav.Link defaultActiveKey={window.location.pathname + window.location.hash} onClick={setterUrlMiPerfil} >Usuarios
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link defaultActiveKey={window.location.pathname + window.location.hash} onClick={setterUrlReservas} > Reservas
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link defaultActiveKey={window.location.pathname + window.location.hash} onClick={setterUrlClases} >
-                                <Link to="/dashboard_user#Clases">Clases</Link>
-                            </Nav.Link>
-                        </Nav.Item>
-                    </Nav>
-                </div> : null}
-        </div>);
-};
+
+                    <div>
+                        {clas !== undefined ? <div>
+                            <Calendar name="calendar" onChange={onChange2} value={value2}></Calendar>
+                        </div> : null}
+                        <br />
+                        {value2 !== undefined ? <div>
+                            <ButtonGroup>
+                                {radios.map((radio, idx) => (
+                                    <ToggleButton
+                                        key={idx}
+                                        id={`radio-${idx}`}
+                                        type="radio"
+                                        variant={idx % 2 ? 'outline-success' : 'outline-success'}
+                                        name="radio"
+                                        value={radio.value}
+                                        checked={radioValue2 === radio.value}
+                                        onChange={(e) => setRadioValue2(e.currentTarget.value)}>
+                                        {radio.name}
+                                    </ToggleButton>
+                                ))}
+                            </ButtonGroup>
+                            <div style={{ paddingTop: "5%" }}>
+                                <Button onClick={(e) => addReserveClass(value2, radioValue2, clas)}> Reservar Hora</Button>
+                            </div>
+                        </div> : null}
+
+                    </div>
+
+                </div>
+            </div> : null}
+            <Nav variant="tabs" defaultActiveKey={window.location.pathname + window.location.hash} className="flex-column" style={{ height: "10%" }}>
+                <Nav.Item>
+                    <Nav.Link defaultActiveKey={window.location.pathname + window.location.hash} onClick={setterUrlMiPerfil} >Usuarios
+                    </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link defaultActiveKey={window.location.pathname + window.location.hash} onClick={setterUrlReservas} > Reservas
+                    </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link defaultActiveKey={window.location.pathname + window.location.hash} onClick={setterUrlClases} >
+                        <Link to="/dashboard_user#Clases">Clases</Link>
+                    </Nav.Link>
+                </Nav.Item>
+            </Nav>
+        </div >
+    );
+}
+
 export default DashboardUser;
