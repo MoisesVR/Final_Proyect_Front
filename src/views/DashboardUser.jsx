@@ -342,7 +342,6 @@ const DashboardUser = () => {
                                         </Card>)
                                 })}
                             </div>
-                            {clases.length !== 0 ? <div>
                                 <div>
                                     <Calendar name="calendar" onChange={onChange2} value={value}></Calendar>
                                     <br />
@@ -366,9 +365,7 @@ const DashboardUser = () => {
                                             <Button onClick={(e) => addReserveClass(value2, radioValue2, clas)}> Reservar Hora</Button>
                                         </div>
                                     </div> : null}
-
                                 </div>
-                            </div> : null}
                         </div> : null}
                 </div> : null}
             <Nav variant="tabs" defaultActiveKey={window.location.pathname + window.location.hash} className="flex-column" style={{ height: "10%" }}>
