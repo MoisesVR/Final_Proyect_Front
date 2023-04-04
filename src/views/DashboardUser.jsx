@@ -129,8 +129,9 @@ const DashboardUser = () => {
 
     const deleteReserva = async (id) => {
         console.log("id", id)
+        const id_user = actualUser;
         const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
-        const endpoint = `/dashboard_user/ingresos/${id}`;
+        const endpoint = `/dashboard_user/ingresos/${id}/${id_user}`;
         const token = localStorage.getItem("token");
         try {
             const response = await axios.delete(urlServer + endpoint, {
