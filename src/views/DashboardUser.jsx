@@ -263,6 +263,7 @@ const DashboardUser = () => {
                                 </thead>
                                 <tbody>
                                     {clases.map((clase, i) => {
+                                        console.log("clases->", clases)
                                         return (
                                             <tr key={i}>
                                                 <td>{clase.name}</td>
