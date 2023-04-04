@@ -222,7 +222,7 @@ const DashboardUser = () => {
                                 </thead>
                                 <tbody>
                                     {entry.map((reserva, i) => {
-                                        {console.log("reserva id->  ",entry)}
+                                        {console.log("reserva id->  ",reserva)}
                                         return (
                                             <tr key={i}>
                                                 <td>{reserva.date.split("T")[0]}</td>
