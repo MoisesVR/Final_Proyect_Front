@@ -11,6 +11,7 @@ import axios from "axios";
 const DashboardUser = () => {
 
     const [radioValue, setRadioValue] = useState();
+    const [radioValue2, setRadioValue2] = useState();
 
     const radios = [
         { name: '10:00', value: '10:00' },
@@ -19,6 +20,7 @@ const DashboardUser = () => {
     ];
 
     const [value, onChange] = useState()
+    const [value2, onChange2] = useState()
 
     const navigate = useNavigate();
 
@@ -69,6 +71,13 @@ const DashboardUser = () => {
                 alert(error);
             }
         }
+    }
+
+    const addReserveClass = async (name) => {
+        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
+        const token = localStorage.getItem("token");
+        const endpoint = `/dashboard_user/`
+
     }
 
     const getDate = async (date, hour) => {
@@ -327,6 +336,33 @@ const DashboardUser = () => {
                                         </Card>)
                                 })}
                             </div>
+                            {clase.length !== 0 ? <div>
+                                <div>
+                                    <Calendar name="calendar" onChange={onChange2} value={value}></Calendar>
+                                    <br />
+                                    {value2 !== undefined ? <div>
+                                        <ButtonGroup>
+                                            {radios.map((radio, idx) => (
+                                                <ToggleButton
+                                                    key={idx}
+                                                    id={`radio-${idx}`}
+                                                    type="radio"
+                                                    variant={idx % 2 ? 'outline-success' : 'outline-success'}
+                                                    name="radio"
+                                                    value={radio.value}
+                                                    checked={radioValue2 === radio.value}
+                                                    onChange={(e) => setRadioValue2(e.currentTarget.value)}>
+                                                    {radio.name}
+                                                </ToggleButton>
+                                            ))}
+                                        </ButtonGroup>
+                                        <div style={{ paddingTop: "5%" }}>
+                                            <Button onClick={(e) => getDate(value2, radioValue2)}> Reservar Hora</Button>
+                                        </div>
+                                    </div> : null}
+
+                                </div>
+                            </div> : null}
                         </div> : null}
                 </div> : null}
             <Nav variant="tabs" defaultActiveKey={window.location.pathname + window.location.hash} className="flex-column" style={{ height: "10%" }}>
