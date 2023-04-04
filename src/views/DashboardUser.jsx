@@ -131,7 +131,7 @@ const DashboardUser = () => {
         console.log("id", id)
         const id_user = actualUser;
         const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
-        const endpoint = `/dashboard_user/ingresos/${id}/${id_user}`;
+        const endpoint = `/dashboard_user/${id}`;
         const token = localStorage.getItem("token");
         try {
             const response = await axios.delete(urlServer + endpoint, {
@@ -145,7 +145,7 @@ const DashboardUser = () => {
     const deleteReservaClase = async (id) => {
         console.log("id->", id)
         const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
-        const endpoint = `/dashboard_user/clases/${id}`;
+        const endpoint = `/dashboard_user/${id}`;
         const token = localStorage.getItem("token");
         try {
             const response = await axios.delete(urlServer + endpoint, {
@@ -269,7 +269,7 @@ const DashboardUser = () => {
                                                 <td>{clase.name}</td>
                                                 <td>{clase.date.split("T")[0]}</td>
                                                 <td>{clase.hour.split(":")[0] + ":" + clase.hour.split(":")[1]}</td>
-                                                <td><Button onClick={(e) => { deleteReservaClase(clases[0].id_user) }} className="btn-danger">Anular</Button></td>
+                                                <td><Button onClick={(e) => { deleteReservaClase(clases[0].id) }} className="btn-danger">Anular</Button></td>
                                             </tr>
                                         );
                                     })}
