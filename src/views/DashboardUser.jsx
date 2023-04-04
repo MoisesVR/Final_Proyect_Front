@@ -268,7 +268,7 @@ const DashboardUser = () => {
                                                 <td>{clase.name}</td>
                                                 <td>{clase.date.split("T")[0]}</td>
                                                 <td>{clase.hour.split(":")[0] + ":" + clase.hour.split(":")[1]}</td>
-                                                <td><Button onClick={(e) => { deleteReservaClase(clase.id) }} className="btn-danger">Anular</Button></td>
+                                                <td><Button onClick={(e) => { deleteReservaClase(clase[0].id) }} className="btn-danger">Anular</Button></td>
                                             </tr>
                                         );
                                     })}
