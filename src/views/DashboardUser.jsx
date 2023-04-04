@@ -223,16 +223,18 @@ const DashboardUser = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {entry.map((reserva, i) => {
-                                        {console.log("reserva id->  ",reserva)}
-                                        return (
-                                            <tr key={i}>
-                                                <td>{reserva.date.split("T")[0]}</td>
-                                                <td>{reserva.hour.split(":")[0] + ":" + reserva.hour.split(":")[1]}</td>
-                                                <td><Button onClick={(e) => { deleteReserva(reserva.id) }} className="btn-danger">Anular</Button></td>
-                                            </tr>
-                                        );
-                                    })}
+                                    {entry.length !== 0 ? <div>
+                                        {entry.map((reserva, i) => {
+                                            { console.log("reserva id->  ", reserva) }
+                                            return (
+                                                <tr key={i}>
+                                                    <td>{reserva.date.split("T")[0]}</td>
+                                                    <td>{reserva.hour.split(":")[0] + ":" + reserva.hour.split(":")[1]}</td>
+                                                    <td><Button onClick={(e) => { deleteReserva(reserva.id) }} className="btn-danger">Anular</Button></td>
+                                                </tr>
+                                            );
+                                        })}
+                                    </div> : null}
                                 </tbody>
                             </Table>
                         </Card.Body>
@@ -264,17 +266,19 @@ const DashboardUser = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {clases.map((clase, i) => {
-                                        console.log("clases->", clases)
-                                        return (
-                                            <tr key={i}>
-                                                <td>{clase.name}</td>
-                                                <td>{clase.date.split("T")[0]}</td>
-                                                <td>{clase.hour.split(":")[0] + ":" + clase.hour.split(":")[1]}</td>
-                                                <td><Button onClick={(e) => { deleteReservaClase(clases[0].id) }} className="btn-danger">Anular</Button></td>
-                                            </tr>
-                                        );
-                                    })}
+                                    {clases.length !== 0 ? <div>
+                                        {clases.map((clase, i) => {
+                                            console.log("clases->", clases)
+                                            return (
+                                                <tr key={i}>
+                                                    <td>{clase.name}</td>
+                                                    <td>{clase.date.split("T")[0]}</td>
+                                                    <td>{clase.hour.split(":")[0] + ":" + clase.hour.split(":")[1]}</td>
+                                                    <td><Button onClick={(e) => { deleteReservaClase(clases[0].id) }} className="btn-danger">Anular</Button></td>
+                                                </tr>
+                                            );
+                                        })}
+                                    </div> : null}
                                 </tbody>
                             </Table>
                         </Card.Body>
