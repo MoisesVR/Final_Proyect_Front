@@ -77,9 +77,6 @@ const DashboardUser = () => {
     }
 
     const addReserveClass = async (date, hour, id_class) => {
-        console.log("date->", date)
-        console.log("hour->", hour)
-        console.log("id_class->", id_class)
         const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
         const token = localStorage.getItem("token");
         const endpoint = `/dashboard_user/clases`;
@@ -92,6 +89,13 @@ const DashboardUser = () => {
                 id_user: id,
                 id_class: id_class,
             })
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Reserva de Clase realizada con éxito',
+                showConfirmButton: false,
+                timer: 1500
+              })
         } catch (error) {
 
         }
@@ -105,7 +109,13 @@ const DashboardUser = () => {
             const token = localStorage.getItem("token");
             const id = actualUser;
             const endpoint = "/dashboard_user/ingresos"
-
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Hora registrada con éxito',
+                showConfirmButton: false,
+                timer: 1500
+              })
             try {
                 const response = await axios.post(urlServer + endpoint, {
                     hora: hour,
@@ -186,7 +196,7 @@ const DashboardUser = () => {
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',
-                title: 'Usuario eliminado con exito',
+                title: 'Reserva de Clase eliminada con exito',
                 showConfirmButton: false,
                 timer: 1500
               })
@@ -299,7 +309,6 @@ const DashboardUser = () => {
                                 </thead>
                                 <tbody>
                                     {clase.map((claseActual, i) => {
-                                        console.log("id claseActual", claseActual.id_reserve)
                                         return (
                                             <tr key={i}>
                                                 <td>{claseActual.name}</td>

@@ -77,7 +77,13 @@ const DashboardAdmin = () => {
             const response = await axios.delete(urlServer + endpoint, {
                 headers: { Authorization: "Bearer "+ token},
             });
-            console.log("response", response)
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Plan eliminado con éxito',
+                showConfirmButton: false,
+                timer: 1500
+              })
         } catch (error) {
             
         }
