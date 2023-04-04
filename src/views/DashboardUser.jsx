@@ -131,7 +131,7 @@ const DashboardUser = () => {
 
     const deleteReserva = async (id) => {
         console.log("id Reserva", id)
-        const id_user = actualUser;
+        /* const id_user = actualUser;
         const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
         const endpoint = `/dashboard_user/ingresos/${id}`;
         const token = localStorage.getItem("token");
@@ -141,12 +141,12 @@ const DashboardUser = () => {
             })
         } catch (error) {
             alert(error)
-        }
+        } */
     }
 
     const deleteReservaClase = async (id) => {
         console.log("id Reserva Clase->", id)
-        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
+        /* const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
         const endpoint = `/dashboard_user/clases/${id}`;
         const token = localStorage.getItem("token");
         try {
@@ -155,7 +155,7 @@ const DashboardUser = () => {
             })
         } catch (error) {
             alert(error)
-        }
+        } */
 
     }
 
@@ -229,7 +229,7 @@ const DashboardUser = () => {
                                             <tr key={i}>
                                                 <td>{reserva.date.split("T")[0]}</td>
                                                 <td>{reserva.hour.split(":")[0] + ":" + reserva.hour.split(":")[1]}</td>
-                                                <td><Button onClick={(e) => { deleteReserva(/* reserva[0].id */) }} className="btn-danger">Anular</Button></td>
+                                                <td><Button onClick={(e) => { deleteReserva(reserva.id) }} className="btn-danger">Anular</Button></td>
                                             </tr>
                                         );
                                     })}
@@ -271,7 +271,7 @@ const DashboardUser = () => {
                                                 <td>{clase.name}</td>
                                                 <td>{clase.date.split("T")[0]}</td>
                                                 <td>{clase.hour.split(":")[0] + ":" + clase.hour.split(":")[1]}</td>
-                                                <td><Button onClick={(e) => { deleteReservaClase(/* clases[0].id */) }} className="btn-danger">Anular</Button></td>
+                                                <td><Button onClick={(e) => { deleteReservaClase(clases[0].id) }} className="btn-danger">Anular</Button></td>
                                             </tr>
                                         );
                                     })}
