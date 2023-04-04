@@ -70,8 +70,6 @@ const DashboardUser = () => {
             }
         }
     }
-    
-    console.log("entry", entry)
 
     const getDate = async (date, hour) => {
         setterUrlReservas()
@@ -113,6 +111,8 @@ const DashboardUser = () => {
         }
     }
 
+    console.log("Clases", clases)
+
     const getAllClases = async () => {
         if (actualUser.length !== 0) {
             const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
@@ -131,7 +131,7 @@ const DashboardUser = () => {
 
     const deleteReserva = async (id) => {
         console.log("id Reserva", id)
-        /* const id_user = actualUser;
+        const id_user = actualUser;
         const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
         const endpoint = `/dashboard_user/ingresos/${id}`;
         const token = localStorage.getItem("token");
@@ -141,7 +141,7 @@ const DashboardUser = () => {
             })
         } catch (error) {
             alert(error)
-        } */
+        }
     }
 
     const deleteReservaClase = async (id) => {
