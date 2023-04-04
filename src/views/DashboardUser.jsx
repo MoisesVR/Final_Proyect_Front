@@ -223,18 +223,16 @@ const DashboardUser = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {entry.length !== 0 ? <div>
-                                        {entry.map((reserva, i) => {
-                                            { console.log("reserva id->  ", reserva) }
-                                            return (
-                                                <tr key={i}>
-                                                    <td>{reserva.date.split("T")[0]}</td>
-                                                    <td>{reserva.hour.split(":")[0] + ":" + reserva.hour.split(":")[1]}</td>
-                                                    <td><Button onClick={(e) => { deleteReserva(reserva.id) }} className="btn-danger">Anular</Button></td>
-                                                </tr>
-                                            );
-                                        })}
-                                    </div> : null}
+                                    {entry.map((reserva, i) => {
+                                        { console.log("reserva id->  ", reserva) }
+                                        return (
+                                            <tr key={i}>
+                                                <td>{reserva.date.split("T")[0]}</td>
+                                                <td>{reserva.hour.split(":")[0] + ":" + reserva.hour.split(":")[1]}</td>
+                                                <td><Button onClick={(e) => { deleteReserva(reserva.id) }} className="btn-danger">Anular</Button></td>
+                                            </tr>
+                                        );
+                                    })}
                                 </tbody>
                             </Table>
                         </Card.Body>
@@ -266,7 +264,8 @@ const DashboardUser = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {clases.length !== 0 ? <div>
+                                    {clase.length !== 0 ? <div>
+                                        {console.log("clase->", clase)}
                                         {clases.map((clase, i) => {
                                             console.log("clases->", clases)
                                             return (
