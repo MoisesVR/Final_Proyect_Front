@@ -107,13 +107,13 @@ const DashboardUser = () => {
         if (actualUser.length !== 0) {
             const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
             const token = localStorage.getItem("token");
-            const id = actualUser;
+            const id = actualUser
             const endpoint = `/dashboard_user/clases/${id}`;
             try {
                 const response = await axios.get(urlServer + endpoint, {
                     headers: { Authorization: "Bearer " + token },
                 })
-                setClases(response.data.reserveClass);
+                setClase(response.data.reserveClass);
             } catch (error) {
                 alert(error);
             }
@@ -129,7 +129,7 @@ const DashboardUser = () => {
                 const response = await axios.get(urlServer + endpoint, {
                     headers: { Authorization: "Bearer " + token },
                 })
-                setClase(response.data.reserveClass)
+                setClases(response.data.reserveClass)
             } catch (error) {
 
             }
@@ -152,6 +152,7 @@ const DashboardUser = () => {
     }
 
     console.log("clase->", clase)
+    console.log("Clases->", clases)
 
     const deleteReservaClase = async (id) => {
         console.log("id Reserva Clase->", id)
@@ -272,13 +273,14 @@ const DashboardUser = () => {
                                 <tbody>
                                     {clase.length !== 0 ? <div>
                                         {console.log("clase->", clase)}
-                                        {clases.map((claseActual, i) => {
+                                        {clase.map((claseActual, i) => {
+                                            console.log("clase dentro del map", clase)
                                             return (
                                                 <tr key={i}>
                                                     <td>{claseActual.name}</td>
                                                     <td>{claseActual.date.split("T")[0]}</td>
                                                     <td>{claseActual.hour.split(":")[0] + ":" + claseActual.hour.split(":")[1]}</td>
-                                                    <td><Button onClick={(e) => { deleteReservaClase(clases[0].id) }} className="btn-danger">Anular</Button></td>
+                                                    <td><Button onClick={(e) => { deleteReservaClase(clase[0].id) }} className="btn-danger">Anular</Button></td>
                                                 </tr>
                                             );
                                         })}
