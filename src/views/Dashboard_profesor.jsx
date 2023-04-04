@@ -1,4 +1,3 @@
-/* import { useState } from "react"; */
 import { Card, Nav, Table, Button } from "react-bootstrap";
 
 const DashboardProfesor = () => {

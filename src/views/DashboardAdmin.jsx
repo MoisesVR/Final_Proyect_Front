@@ -1,15 +1,13 @@
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Card, Nav, Table, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import UserContext from "../context/context";
+import Swal from "sweetalert2";
 
 const DashboardAdmin = () => {
 
     const navigate = useNavigate();
 
-    /* const [user, setUser] = useContext(UserContext) */
-    /* const [userDelete, setUserDelete] = useState([]); */
     const [usuarios, setUsuarioss] = useState([]);
     const [planes, setPlanes] = useState([]);
     const [clases, setClases] = useState([]);
@@ -44,6 +42,13 @@ const DashboardAdmin = () => {
             const response = await axios.delete(urlServer + endpoint, {
                 headers: { Authorization: "Bearer " + token },
             });
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Usuario eliminado con éxito',
+                showConfirmButton: false,
+                timer: 1500
+              })
         } catch (error) {
             alert(error)
         }
@@ -102,6 +107,13 @@ const DashboardAdmin = () => {
             const response = await axios.delete(urlServer + endpoint, {
                 headers: { Authorization: "Bearer " + token},
             })
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Clase eliminada con éxito',
+                showConfirmButton: false,
+                timer: 1500
+              })
         } catch (error) {
             alert(error)
         }
@@ -122,7 +134,6 @@ const DashboardAdmin = () => {
         setterURL();
         getPlanesData();
         getUsuarioData();
-        /*         getClasesData(); */
         verified();
     }, []);
 
@@ -140,13 +151,6 @@ const DashboardAdmin = () => {
     function setterUrlClases() {
         setUrl("#Clases")
         getClasesData();
-    }
-
-    function deleteUser(id) {
-        /* deleteUsuario(id); */
-    }
-
-    function userid(id) {
     }
 
     return (

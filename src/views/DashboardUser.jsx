@@ -6,6 +6,7 @@ import UserContext from "../context/context";
 import { Card, Nav, Table, Button, ButtonGroup, ToggleButton, } from "react-bootstrap";
 
 import axios from "axios";
+import Swal from "sweetalert2";
 
 
 const DashboardUser = () => {
@@ -162,6 +163,13 @@ const DashboardUser = () => {
             const response = await axios.delete(urlServer + endpoint, {
                 headers: { Authorization: "Bearer " + token },
             })
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Reserva eliminada con exito',
+                showConfirmButton: false,
+                timer: 1500
+              })
         } catch (error) {
             alert(error)
         }
@@ -175,6 +183,13 @@ const DashboardUser = () => {
             const response = await axios.delete(urlServer + endpoint, {
                 headers: { Authorization: "Bearer " + token },
             })
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Usuario eliminado con exito',
+                showConfirmButton: false,
+                timer: 1500
+              })
         } catch (error) {
             alert(error)
         }
@@ -196,7 +211,7 @@ const DashboardUser = () => {
             getAllClases();
         }
         verified();
-    }, [/* actualUser, clases */]);
+    }, []);
 
     function setterUrlMiPerfil() {
         getEntry();

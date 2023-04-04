@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 
 import axios from "axios";
+import Swal from "sweetalert2";
 
 
 function Register() {
@@ -22,9 +23,21 @@ function Register() {
         const endpoint = "/registrar";
         let { nombre, email, password, direccion, forma_de_pago, id_user_type, id_plan } = usuario;
         try {
-            if (!nombre || !email || !password || !direccion || !forma_de_pago || !id_user_type || !id_plan) return alert("Falta ingresar datos");
+            if (!nombre || !email || !password || !direccion || !forma_de_pago || !id_user_type || !id_plan) return Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Faltan datos por ingresar',
+                showConfirmButton: false,
+                timer: 1500
+              });
             await axios.post(urlServer + endpoint, usuario);
-            alert("Usuario registrado con exito");
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Usuario registrado con éxito',
+                showConfirmButton: false,
+                timer: 1500
+              })
             navigate("/iniciarSesion");
         } catch ({ response: { data: message } }) {
             alert(message);

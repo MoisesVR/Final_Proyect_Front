@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-/* import { DataContext } from "../context/contextApi";
-*/
+
 import UserContext from "../context/context";
 import { Form, Button } from "react-bootstrap";
 
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function StartSession() {
 
@@ -28,7 +28,13 @@ function StartSession() {
             if (!email || !password) return alert("Email  y password obligatorias");
             const { data: token } = await axios.post(urlServer + endpoint, usuario, {
             });
-            alert("Usuario identificado con éxito");
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Usuario identificado con éxito',
+                showConfirmButton: false,
+                timer: 1500
+              })
             localStorage.setItem("token", token.token);
             localStorage.setItem("usuario", usuario.email);
             if (token.user[0].id_user_type === 1) {
@@ -39,36 +45,15 @@ function StartSession() {
                 navigate("/dashboard_user#MiPerfil#Ingresos");
             }
         } catch (error) {
-            alert(error);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Email o Contraseña incorrecto',
+                showConfirmButton: false,
+                timer: 1500
+              })
         }
     }
-
-/*     const getUser = async () => {
-        const urlServer = "http://localhost:3000";
-        const endpoint = "/dashboard_user/usuarios";
-        const email = localStorage.getItem("usuario");
-        const token = localStorage.getItem("token");
-        try {
-            const response = await axios.post(urlServer + endpoint, {
-                email: email
-            }, {
-                headers: { Authorization: "Bearer" + token },
-            })
-            setUserActual(response.data.gettedUser[0].id);
-        } catch (error) {
-            alert(error);
-        }
-    }
-
-    console.log("user Actual->", userActual)
-
-    localStorage.setItem("usuario", userActual.id)
-
-    useEffect(() => {
-        if (usuario.length !== undefined) {
-            getUser();
-        }
-    }) */
 
     return (
         <div>
