@@ -94,6 +94,21 @@ const DashboardAdmin = () => {
         }
     }
 
+    const deleteClass = async (id) => {
+        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
+        const endpoint = `/dashboard/clases/${id}`;
+        const token = localStorage.getItem("token");    
+
+        try {
+            const response = await axios.delete(urlServer + endpoint, {
+                headers: { Authorization: "Bearer " + token},
+            })
+        } catch (error) {
+            alert(error)
+        }
+
+    }
+
     function setterURL() {
         if (window.location.hash === "#Usuarios") {
             setUrl("#Usuarios");
@@ -259,7 +274,7 @@ const DashboardAdmin = () => {
                                                     <td>{clase.name}</td>
                                                     <td>{clase.description}</td>
                                                     <td>{clase.cupo}</td>
-                                                    <td><Button className="btn-danger"> Eliminar </Button></td>
+                                                    <td><Button className="btn-danger" onClick={(e) => { deleteClass(clase.id)}}> Eliminar </Button></td>
                                                 </tr>
                                             );
                                         })}
