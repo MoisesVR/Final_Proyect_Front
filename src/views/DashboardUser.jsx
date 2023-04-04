@@ -75,10 +75,10 @@ const DashboardUser = () => {
         }
     }
 
-    const addReserveClass = async ( date ,hour, id_class) => {
-        console.log("date->",date)
-        console.log("hour->",hour)
-        console.log("id_class->",id_class)
+    const addReserveClass = async (date, hour, id_class) => {
+        console.log("date->", date)
+        console.log("hour->", hour)
+        console.log("id_class->", id_class)
         const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
         const token = localStorage.getItem("token");
         const endpoint = `/dashboard_user/clases`;
@@ -92,7 +92,7 @@ const DashboardUser = () => {
                 id_class: id_class,
             })
         } catch (error) {
-            
+
         }
 
     }
@@ -335,7 +335,6 @@ const DashboardUser = () => {
                             <h1> Clases </h1>
                             <div style={{ display: "flex" }}>
                                 {clases.map((clase, i) => {
-                                    console.log("clases->", clases)
                                     return (
                                         <Card key={i} style={{ width: '18rem' }}>
                                             <Button onClick={setClas(clase.id)}>{clase.name}</Button>
