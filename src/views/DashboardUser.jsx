@@ -124,7 +124,8 @@ const DashboardUser = () => {
         if (actualUser.length !== 0) {
             const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
             const token = localStorage.getItem("token");
-            const endpoint = "/dashboard_user/clases";
+            const id = actualUser
+            const endpoint = `/dashboard_user/allclases/${id}`;
             try {
                 const response = await axios.get(urlServer + endpoint, {
                     headers: { Authorization: "Bearer " + token },
@@ -193,7 +194,7 @@ const DashboardUser = () => {
         setUrl("#Reservas")
     }
     function setterUrlClases() {
-        getAllClases()
+        getAllClases();
         setUrl("#Clases")
     }
 
@@ -265,12 +266,13 @@ const DashboardUser = () => {
                                 </thead>
                                 <tbody>
                                     {clase.map((claseActual, i) => {
+                                        console.log("id claseActual", claseActual.id_reserve)
                                         return (
                                             <tr key={i}>
                                                 <td>{claseActual.name}</td>
                                                 <td>{claseActual.date.split("T")[0]}</td>
                                                 <td>{claseActual.hour.split(":")[0] + ":" + claseActual.hour.split(":")[1]}</td>
-                                                <td><Button onClick={(e) => { deleteReservaClase(claseActual.id) }} className="btn-danger">Anular</Button></td>
+                                                <td><Button onClick={(e) => { deleteReservaClase(claseActual.id_reserve) }} className="btn-danger">Anular</Button></td>
                                             </tr>
                                         );
                                     })}
@@ -315,7 +317,7 @@ const DashboardUser = () => {
                         <div>
                             <h1> Clases </h1>
                             <div style={{ display: "flex" }}>
-                                {clase.map((clase, i) => {
+                                {clases.map((clase, i) => {
                                     return (
                                         <Card key={i} style={{ width: '18rem' }}>
                                             <Button>{clase.name}</Button>
@@ -323,7 +325,8 @@ const DashboardUser = () => {
                                         </Card>)
                                 })}
                             </div>
-                            {clase.length !== 0 ? <div>
+                            {clases.length !== 0 ? <div>
+                                {console.log("clases->", clases)}
                                 <div>
                                     <Calendar name="calendar" onChange={onChange2} value={value}></Calendar>
                                     <br />
