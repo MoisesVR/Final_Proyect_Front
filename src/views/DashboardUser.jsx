@@ -146,7 +146,6 @@ const DashboardUser = () => {
         const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
         const endpoint = `/dashboard_user/clases/${id}`;
         const token = localStorage.getItem("token");
-
         try {
             const response = await axios.delete(urlServer + endpoint, {
                 headers: { Authorization: "Bearer " + token },
@@ -269,7 +268,7 @@ const DashboardUser = () => {
                                                 <td>{clase.name}</td>
                                                 <td>{clase.date.split("T")[0]}</td>
                                                 <td>{clase.hour.split(":")[0] + ":" + clase.hour.split(":")[1]}</td>
-                                                <td><Button onClick={(e) => { deleteReservaClase(clase.id) }} className="btn-danger">Anular</Button></td>
+                                                <td><Button onClick={(e) => { deleteReservaClase(clases[0].id_user) }} className="btn-danger">Anular</Button></td>
                                             </tr>
                                         );
                                     })}
