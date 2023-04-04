@@ -37,7 +37,7 @@ const DashboardAdmin = () => {
     };
 
     const deleteUsuario = async (id) => {
-        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app/";
+        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
         const endpoint = `/dashboard/usuarios/${id}`;
         const token = localStorage.getItem("token");
         try {
@@ -64,8 +64,23 @@ const DashboardAdmin = () => {
         }
     }
 
+    const deletePlan = async (id) => {
+        console.log("id plan", id)
+        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
+        const endpoint = `/dashboard/planes/${id}`;
+        const token = localStorage.getItem("token");
+        try {
+            const response = await axios.delete(urlServer + endpoint, {
+                headers: { Authorization: "Bearer "+ token},
+            });
+            console.log("response", response)
+        } catch (error) {
+            
+        }
+    }
+
     const getClasesData = async () => {
-        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app/";
+        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
         const endpoint = "/dashboard/clases";
         const token = localStorage.getItem("token");
 
@@ -93,7 +108,7 @@ const DashboardAdmin = () => {
         setterURL();
         getPlanesData();
         getUsuarioData();
-        getClasesData();
+        /*         getClasesData(); */
         verified();
     }, []);
 
@@ -150,17 +165,22 @@ const DashboardAdmin = () => {
                                     </thead>
                                     <tbody>
                                         {usuarios.map((usuario, id) => {
-                                            return (
-                                                <tr key={id}>
-                                                    <td>{usuario.id}</td>
-                                                    <td>{usuario.name}</td>
-                                                    <td>{usuario.email}</td>
-                                                    <td>{usuario.address}</td>
-                                                    <td>{usuario.payment_type}</td>
-                                                    <td>{usuario.id_user_type}</td>
-                                                    <td><Button onClick={(e) => { deleteUsuario(usuario.id) }} className="btn-danger">Eliminar</Button></td>
-                                                </tr>
-                                            )
+                                            if (usuario.id_user_type === 1) {
+
+                                            } else {
+
+                                                return (
+                                                    <tr key={id}>
+                                                        <td>{usuario.id}</td>
+                                                        <td>{usuario.name}</td>
+                                                        <td>{usuario.email}</td>
+                                                        <td>{usuario.address}</td>
+                                                        <td>{usuario.payment_type}</td>
+                                                        <td>{usuario.id_user_type}</td>
+                                                        <td><Button onClick={(e) => { deleteUsuario(usuario.id) }} className="btn-danger">Eliminar</Button></td>
+                                                    </tr>
+                                                )
+                                            }
                                         }
                                         )}
                                     </tbody>
@@ -201,7 +221,7 @@ const DashboardAdmin = () => {
                                                     <td>{plan.description}</td>
                                                     <td>{plan.cost}</td>
                                                     <td>{plan.duration}</td>
-                                                    <td><Button className="btn-danger"> Eliminar </Button></td>
+                                                    <td><Button onClick={(e) => { deletePlan(plan.id) }} className="btn-danger"> Eliminar </Button></td>
                                                 </tr>
                                             );
                                         })}

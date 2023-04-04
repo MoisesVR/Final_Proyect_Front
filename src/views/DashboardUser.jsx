@@ -1,15 +1,29 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import 'react-calendar/dist/Calendar.css';
+import Calendar from "react-calendar";
+import { useNavigate, Link, } from "react-router-dom";
 import UserContext from "../context/context";
-import { Card, Nav, Table, Button, ButtonGroup, ButtonToolbar, ToggleButton } from "react-bootstrap";
+import { Card, Nav, Table, Button, ButtonGroup, ToggleButton, } from "react-bootstrap";
 
 import axios from "axios";
 
+
 const DashboardUser = () => {
+
+    const [radioValue, setRadioValue] = useState();
+
+    const radios = [
+        { name: '10:00', value: '10:00' },
+        { name: '11:00', value: '11:00' },
+        { name: '12:00', value: '12:00' },
+    ];
+
+    const [value, onChange] = useState()
 
     const navigate = useNavigate();
 
     const [user] = useContext(UserContext);
+    const [date, setDate] = useState([]);
     const [entry, setEntry] = useState([]);
     const [clases, setClases] = useState([]);
     const [clase, setClase] = useState([]);
@@ -22,7 +36,7 @@ const DashboardUser = () => {
     }
 
     const getUser = async () => {
-        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app/";
+        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
         const endpoint = "/dashboard_user/usuarios";
         const email = localStorage.getItem("usuario");
         const token = localStorage.getItem("token");
@@ -38,17 +52,16 @@ const DashboardUser = () => {
         }
     }
 
-
     const getEntry = async () => {
+        navigate("/dashboard_user#MiPerfil#Ingresos")
+        setUrl("#MiPerfil#Ingresos")
         if (actualUser.length !== 0) {
             const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
-            const endpoint = "/dashboard_user/ingresos";
-            const id = actualUser;
             const token = localStorage.getItem("token");
+            const id = actualUser;
+            const endpoint = `/dashboard_user/ingresos/${id}`;
             try {
-                const response = await axios.post(urlServer + endpoint, {
-                    id: parseInt(id)
-                }, {
+                const response = await axios.get(urlServer + endpoint, {
                     headers: { Authorization: "Bearer " + token },
                 })
                 setEntry(response.data.entry);
@@ -58,9 +71,32 @@ const DashboardUser = () => {
         }
     }
 
+    const getDate = async (date, hour) => {
+        setterUrlReservas()
+        if (actualUser.length !== 0) {
+            const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
+            const token = localStorage.getItem("token");
+            const id = actualUser;
+            const endpoint = "/dashboard_user/ingresos"
+
+            try {
+                const response = await axios.post(urlServer + endpoint, {
+                    hora: hour,
+                    fecha: date,
+                    id_user: id,
+                }, {
+                    headers: { Authorization: "Bearer " + token },
+                })
+                setDate(response)
+            } catch (error) {
+                alert(error)
+            }
+        }
+    }
+
     const getClases = async () => {
         if (actualUser.length !== 0) {
-            const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app/";
+            const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
             const token = localStorage.getItem("token");
             const id = actualUser;
             const endpoint = `/dashboard_user/clases/${id}`;
@@ -76,17 +112,18 @@ const DashboardUser = () => {
     }
 
     const getAllClases = async () => {
-        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app/";
-        const token = localStorage.getItem("token");
-        const endpoint = "/dashboard_user/clases"
+        if (actualUser.length !== 0) {
+            const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
+            const token = localStorage.getItem("token");
+            const endpoint = "/dashboard_user/clases";
+            try {
+                const response = await axios.get(urlServer + endpoint, {
+                    headers: { Authorization: "Bearer " + token },
+                })
+                setClase(response.data.reserveClass)
+            } catch (error) {
 
-        try {
-            const response = await axios.get(urlServer + endpoint, {
-                headers: { Authorization: "Bearer " + token },
-            })
-            setClase(response.data.reserveClass)
-        } catch (error) {
-
+            }
         }
     }
 
@@ -121,28 +158,23 @@ const DashboardUser = () => {
     const [url, setUrl] = useState(window.location.hash);
 
     useEffect(() => {
-        getAllClases();
-        getClases();
-        getUser();
-        verified();
-        if (actualUser.length !== 0) {
+        if (url === "#MiPerfil#Ingresos") {
+            getUser();
             getEntry();
+        } else if (url === "#MiPerfil#Clases") {
+            getClases();
+        } else if (url === "#Reservas") {
+            getDate();
+        } else if (url === "#Clases") {
+            getAllClases();
         }
-    }, [actualUser, clases]);
-
-    const [checkedL, setCheckedL] = useState(false);
-    const [checkedM, setCheckedM] = useState(false);
-    const [checkedMi, setCheckedMi] = useState(false);
-    const [checkedJ, setCheckedJ] = useState(false);
-    const [checked09, setChecked09] = useState(false);
-    const [checked10, setChecked10] = useState(false);
-    const [checked11, setChecked11] = useState(false);
-    const [checked12, setChecked12] = useState(false);
+        verified();
+    }, [/* actualUser, clases */]);
 
     function setterUrlMiPerfil() {
         getEntry();
-        setUrl("#MiPerfil#Ingresos")
     }
+
     function setterUrlMiPerfilClases() {
         getUser();
         getClases();
@@ -152,9 +184,11 @@ const DashboardUser = () => {
         setUrl("#MiPerfil#Clases")
     }
     function setterUrlReservas() {
+        navigate("#Reservas")
         setUrl("#Reservas")
     }
     function setterUrlClases() {
+        getAllClases()
         setUrl("#Clases")
     }
 
@@ -246,127 +280,40 @@ const DashboardUser = () => {
                     <h1 style={{ padding: "5%" }}> Reserva tu ingreso al gimnasio</h1>
                 </div>
                 <div>
-                    <ButtonToolbar aria-label="Toolbar with button groups">
-                        <ButtonGroup className="me-2" aria-label="First group">
+                    <Calendar name="calendar" onChange={onChange} value={value}></Calendar>
+                    <br />
+                    {value !== undefined ? <div>
+                        <ButtonGroup>
+                            {radios.map((radio, idx) => (
+                                <ToggleButton
+                                    key={idx}
+                                    id={`radio-${idx}`}
+                                    type="radio"
+                                    variant={idx % 2 ? 'outline-success' : 'outline-success'}
+                                    name="radio"
+                                    value={radio.value}
+                                    checked={radioValue === radio.value}
+                                    onChange={(e) => setRadioValue(e.currentTarget.value)}>
+                                    {radio.name}
+                                </ToggleButton>
+                            ))}
+                        </ButtonGroup>
+                        <div style={{ paddingTop: "5%" }}>
+                            <Button onClick={(e) => getDate(value, radioValue)}> Reservar Hora</Button>
+                        </div>
+                    </div> : null}
 
-                            <ToggleButton
-                                className="mb-2"
-                                id="toggle-checkL"
-                                type="checkbox"
-                                variant="outline-primary"
-                                checked={checkedL}
-                                value="1"
-                                onChange={(e) => setCheckedL(e.currentTarget.checked)}
-                            >
-                                Lunes 19/03
-                            </ToggleButton>
-                        </ButtonGroup>
-                        <ButtonGroup className="me-2" aria-label="First group">
-                            <ToggleButton
-                                className="mb-2"
-                                id="toggle-checkM"
-                                type="checkbox"
-                                variant="outline-primary"
-                                checked={checkedM}
-                                value="1"
-                                onChange={(e) => setCheckedM(e.currentTarget.checked)}
-                            >
-                                Martes 20/03
-                            </ToggleButton>
-                        </ButtonGroup>
-                        <ButtonGroup className="me-2" aria-label="First group">
-                            <ToggleButton
-                                className="mb-2"
-                                id="toggle-checkMi"
-                                type="checkbox"
-                                variant="outline-primary"
-                                checked={checkedMi}
-                                value="1"
-                                onChange={(e) => setCheckedMi(e.currentTarget.checked)}
-                            >
-                                Miercoles 21/03
-                            </ToggleButton>
-                        </ButtonGroup>
-                        <ButtonGroup className="me-2" aria-label="First group">
-                            <ToggleButton
-                                className="mb-2"
-                                id="toggle-checkJ"
-                                type="checkbox"
-                                variant="outline-primary"
-                                checked={checkedJ}
-                                value="1"
-                                onChange={(e) => setCheckedJ(e.currentTarget.checked)}
-                            >
-                                Jueves 22/03
-                            </ToggleButton>
-                        </ButtonGroup>
-                    </ButtonToolbar>
-                </div>
-                <div>
-                    <ButtonToolbar aria-label="Toolbar with button groups">
-                        <ButtonGroup className="me-2" aria-label="First group">
-                            <ToggleButton
-                                className="mb-2"
-                                id="toggle-check09"
-                                type="checkbox"
-                                variant="outline-primary"
-                                checked={checked09}
-                                value="1"
-                                onChange={(e) => setChecked09(e.currentTarget.checked)}
-                            >
-                                09:00
-                            </ToggleButton>
-                        </ButtonGroup>
-                        <ButtonGroup className="me-2" aria-label="First group">
-                            <ToggleButton
-                                className="mb-2"
-                                id="toggle-check10"
-                                type="checkbox"
-                                variant="outline-primary"
-                                checked={checked10}
-                                value="1"
-                                onChange={(e) => setChecked10(e.currentTarget.checked)}
-                            >
-                                10:00
-                            </ToggleButton>
-                        </ButtonGroup>
-                        <ButtonGroup className="me-2" aria-label="First group">
-                            <ToggleButton
-                                className="mb-2"
-                                id="toggle-check11"
-                                type="checkbox"
-                                variant="outline-primary"
-                                checked={checked11}
-                                value="1"
-                                onChange={(e) => setChecked11(e.currentTarget.checked)}
-                            >
-                                11:00
-                            </ToggleButton>
-                        </ButtonGroup>
-                        <ButtonGroup className="me-2" aria-label="First group">
-                            <ToggleButton
-                                className="mb-2"
-                                id="toggle-check12"
-                                type="checkbox"
-                                variant="outline-primary"
-                                checked={checked12}
-                                value="1"
-                                onChange={(e) => setChecked12(e.currentTarget.checked)}
-                            >
-                                12:00
-                            </ToggleButton>
-                        </ButtonGroup>
-                    </ButtonToolbar>
                 </div>
             </div> : url === "#Clases" ?
-                <div>
+                <div style={{ width: "60vw" }}>
                     {clases ?
                         <div>
                             <h1> Clases </h1>
                             <div style={{ display: "flex" }}>
-                                {clase.map((clase) => {
+                                {clase.map((clase, i) => {
                                     return (
-                                        <Card style={{ width: '18rem' }}>
+                                        <Card key={i} style={{ width: '18rem' }}>
+                                            <Button>{clase.name}</Button>
                                             <Card.Img variant="top" src={clase.img} />
                                         </Card>)
                                 })}
@@ -375,12 +322,11 @@ const DashboardUser = () => {
                 </div> : null}
             <Nav variant="tabs" defaultActiveKey={window.location.pathname + window.location.hash} className="flex-column" style={{ height: "10%" }}>
                 <Nav.Item>
-                    <Nav.Link defaultActiveKey={window.location.pathname + window.location.hash} onClick={setterUrlMiPerfil} >
-                        <Link to="/dashboard_user#MiPerfil#Ingresos">Usuarios</Link>Usuarios</Nav.Link>
+                    <Nav.Link defaultActiveKey={window.location.pathname + window.location.hash} onClick={setterUrlMiPerfil} >Usuarios
+                    </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link defaultActiveKey={window.location.pathname + window.location.hash} onClick={setterUrlReservas} >
-                        <Link to="/dashboard_user#Reservas">Reservas</Link>
+                    <Nav.Link defaultActiveKey={window.location.pathname + window.location.hash} onClick={setterUrlReservas} > Reservas
                     </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
