@@ -120,8 +120,6 @@ const DashboardUser = () => {
         }
     }
 
-    console.log("Clases", clases)
-
     const getAllClases = async () => {
         if (actualUser.length !== 0) {
             const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
@@ -152,6 +150,8 @@ const DashboardUser = () => {
             alert(error)
         }
     }
+
+    console.log("clase->", clase)
 
     const deleteReservaClase = async (id) => {
         console.log("id Reserva Clase->", id)
@@ -191,9 +191,6 @@ const DashboardUser = () => {
     function setterUrlMiPerfilClases() {
         getUser();
         getClases();
-        if (actualUser.length !== 0) {
-
-        }
         setUrl("#MiPerfil#Clases")
     }
     function setterUrlReservas() {
@@ -275,13 +272,12 @@ const DashboardUser = () => {
                                 <tbody>
                                     {clase.length !== 0 ? <div>
                                         {console.log("clase->", clase)}
-                                        {clases.map((clase, i) => {
-                                            console.log("clases->", clases)
+                                        {clases.map((claseActual, i) => {
                                             return (
                                                 <tr key={i}>
-                                                    <td>{clase.name}</td>
-                                                    <td>{clase.date.split("T")[0]}</td>
-                                                    <td>{clase.hour.split(":")[0] + ":" + clase.hour.split(":")[1]}</td>
+                                                    <td>{claseActual.name}</td>
+                                                    <td>{claseActual.date.split("T")[0]}</td>
+                                                    <td>{claseActual.hour.split(":")[0] + ":" + claseActual.hour.split(":")[1]}</td>
                                                     <td><Button onClick={(e) => { deleteReservaClase(clases[0].id) }} className="btn-danger">Anular</Button></td>
                                                 </tr>
                                             );
