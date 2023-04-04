@@ -128,6 +128,7 @@ const DashboardUser = () => {
     }
 
     const deleteReserva = async (id) => {
+        console.log("id", id)
         const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
         const endpoint = `/dashboard_user/ingresos/${id}`;
         const token = localStorage.getItem("token");
@@ -221,7 +222,7 @@ const DashboardUser = () => {
                                 </thead>
                                 <tbody>
                                     {entry.map((reserva, i) => {
-                                        {console.log("reserva",reserva)}
+                                        {console.log("reserva id->  ",reserva)}
                                         return (
                                             <tr key={i}>
                                                 <td>{reserva.date.split("T")[0]}</td>
@@ -262,13 +263,12 @@ const DashboardUser = () => {
                                 </thead>
                                 <tbody>
                                     {clases.map((clase, i) => {
-                                        {console.log("reserva",clases[0].id)}
                                         return (
                                             <tr key={i}>
                                                 <td>{clase.name}</td>
                                                 <td>{clase.date.split("T")[0]}</td>
                                                 <td>{clase.hour.split(":")[0] + ":" + clase.hour.split(":")[1]}</td>
-                                                <td><Button onClick={(e) => { deleteReservaClase(clase[0].id) }} className="btn-danger">Anular</Button></td>
+                                                <td><Button onClick={(e) => { deleteReservaClase(clase.id) }} className="btn-danger">Anular</Button></td>
                                             </tr>
                                         );
                                     })}
