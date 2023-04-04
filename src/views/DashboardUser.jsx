@@ -150,7 +150,7 @@ const DashboardUser = () => {
                 })
                 setClase(response.data.reserveClass);
             } catch (error) {
-                alert(error);
+                console.log("error",error);
             }
         }
     }
