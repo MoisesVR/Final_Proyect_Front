@@ -29,6 +29,7 @@ const DashboardUser = () => {
 
     const [user] = useContext(UserContext);
     const [date, setDate] = useState([]);
+    const [setReservaDelete] = useState([]);
     const [entry, setEntry] = useState([]);
     const [clases, setClases] = useState([]);
     const [clase, setClase] = useState([]);
@@ -71,7 +72,13 @@ const DashboardUser = () => {
                 })
                 setEntry(response.data.entry);
             } catch (error) {
-                alert(error);
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'No hay ingresos registrados ',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
             }
         }
     }
@@ -97,7 +104,7 @@ const DashboardUser = () => {
                 timer: 1500
               })
         } catch (error) {
-
+            
         }
 
     }
@@ -180,6 +187,7 @@ const DashboardUser = () => {
                 showConfirmButton: false,
                 timer: 1500
               })
+              setReservaDelete(response)
         } catch (error) {
             alert(error)
         }
