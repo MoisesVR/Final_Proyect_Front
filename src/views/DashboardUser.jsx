@@ -381,8 +381,7 @@ const DashboardUser = () => {
                             </Nav.Link>
                         </Nav.Item>
                     </Nav>
-                </div>
-    );
-}
-
-            export default DashboardUser;
+                </div> : null}
+        </div>);
+};
+export default DashboardUser;
