@@ -13,6 +13,8 @@ const DashboardUser = () => {
     const [radioValue, setRadioValue] = useState();
     const [radioValue2, setRadioValue2] = useState();
 
+    const [clas, setClas] = useState();
+
     const radios = [
         { name: '10:00', value: '10:00' },
         { name: '11:00', value: '11:00' },
@@ -73,10 +75,25 @@ const DashboardUser = () => {
         }
     }
 
-    const addReserveClass = async (name) => {
+    const addReserveClass = async ( date ,hour, id_class) => {
+        console.log("date->",date)
+        console.log("hour->",hour)
+        console.log("id_class->",id_class)
         const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
         const token = localStorage.getItem("token");
-        const endpoint = `/dashboard_user/`
+        const endpoint = `/dashboard_user/clases`;
+        const id = actualUser;
+
+        try {
+            const response = await axios.post(urlServer + endpoint, {
+                fecha: date,
+                hora: hour,
+                id_user: id,
+                id_class: id_class,
+            })
+        } catch (error) {
+            
+        }
 
     }
 
@@ -318,15 +335,15 @@ const DashboardUser = () => {
                             <h1> Clases </h1>
                             <div style={{ display: "flex" }}>
                                 {clases.map((clase, i) => {
+                                    console.log("clases->", clases)
                                     return (
                                         <Card key={i} style={{ width: '18rem' }}>
-                                            <Button>{clase.name}</Button>
+                                            <Button onClick={setClas(clase.id)}>{clase.name}</Button>
                                             <Card.Img variant="top" src={clase.img} />
                                         </Card>)
                                 })}
                             </div>
                             {clases.length !== 0 ? <div>
-                                {console.log("clases->", clases)}
                                 <div>
                                     <Calendar name="calendar" onChange={onChange2} value={value}></Calendar>
                                     <br />
@@ -347,7 +364,7 @@ const DashboardUser = () => {
                                             ))}
                                         </ButtonGroup>
                                         <div style={{ paddingTop: "5%" }}>
-                                            <Button onClick={(e) => getDate(value2, radioValue2)}> Reservar Hora</Button>
+                                            <Button onClick={(e) => addReserveClass(value2, radioValue2, clas)}> Reservar Hora</Button>
                                         </div>
                                     </div> : null}
 
