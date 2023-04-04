@@ -227,7 +227,7 @@ const DashboardUser = () => {
                                             <tr key={i}>
                                                 <td>{reserva.date.split("T")[0]}</td>
                                                 <td>{reserva.hour.split(":")[0] + ":" + reserva.hour.split(":")[1]}</td>
-                                                <td><Button onClick={(e) => { deleteReserva(reserva.id) }} className="btn-danger">Anular</Button></td>
+                                                <td><Button onClick={(e) => { deleteReserva(reserva[0].id) }} className="btn-danger">Anular</Button></td>
                                             </tr>
                                         );
                                     })}
