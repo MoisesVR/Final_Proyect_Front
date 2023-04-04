@@ -137,8 +137,6 @@ const DashboardUser = () => {
     }
 
     const deleteReserva = async (id) => {
-        console.log("id Reserva", id)
-        const id_user = actualUser;
         const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
         const endpoint = `/dashboard_user/ingresos/${id}`;
         const token = localStorage.getItem("token");
@@ -151,12 +149,8 @@ const DashboardUser = () => {
         }
     }
 
-    console.log("clase->", clase)
-    console.log("Clases->", clases)
-
     const deleteReservaClase = async (id) => {
-        console.log("id Reserva Clase->", id)
-        /* const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
+        const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
         const endpoint = `/dashboard_user/clases/${id}`;
         const token = localStorage.getItem("token");
         try {
@@ -165,7 +159,7 @@ const DashboardUser = () => {
             })
         } catch (error) {
             alert(error)
-        } */
+        }
 
     }
 
@@ -231,7 +225,6 @@ const DashboardUser = () => {
                                 </thead>
                                 <tbody>
                                     {entry.map((reserva, i) => {
-                                        { console.log("reserva id->  ", reserva) }
                                         return (
                                             <tr key={i}>
                                                 <td>{reserva.date.split("T")[0]}</td>
@@ -271,20 +264,16 @@ const DashboardUser = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {clase.length !== 0 ? <div>
-                                        {console.log("clase->", clase)}
-                                        {clase.map((claseActual, i) => {
-                                            console.log("clase dentro del map", clase)
-                                            return (
-                                                <tr key={i}>
-                                                    <td>{claseActual.name}</td>
-                                                    <td>{claseActual.date.split("T")[0]}</td>
-                                                    <td>{claseActual.hour.split(":")[0] + ":" + claseActual.hour.split(":")[1]}</td>
-                                                    <td><Button onClick={(e) => { deleteReservaClase(clase[0].id) }} className="btn-danger">Anular</Button></td>
-                                                </tr>
-                                            );
-                                        })}
-                                    </div> : null}
+                                    {clase.map((claseActual, i) => {
+                                        return (
+                                            <tr key={i}>
+                                                <td>{claseActual.name}</td>
+                                                <td>{claseActual.date.split("T")[0]}</td>
+                                                <td>{claseActual.hour.split(":")[0] + ":" + claseActual.hour.split(":")[1]}</td>
+                                                <td><Button onClick={(e) => { deleteReservaClase(clase[0].id) }} className="btn-danger">Anular</Button></td>
+                                            </tr>
+                                        );
+                                    })}
                                 </tbody>
                             </Table>
                         </Card.Body>

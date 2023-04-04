@@ -65,7 +65,6 @@ const DashboardAdmin = () => {
     }
 
     const deletePlan = async (id) => {
-        console.log("id plan", id)
         const urlServer = "https://backendproyect-5ybw4.ondigitalocean.app";
         const endpoint = `/dashboard/planes/${id}`;
         const token = localStorage.getItem("token");
